@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onRadioButtonChoice(int choice) {
+        mRadioButtonChoice=choice;
         Toast.makeText(this,"CHOICE "+choice,Toast.LENGTH_LONG).show();
     }
 }
