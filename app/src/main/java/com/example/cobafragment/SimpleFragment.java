@@ -43,7 +43,7 @@ public class SimpleFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
     }
 
     @Override
@@ -54,6 +54,12 @@ public class SimpleFragment extends Fragment {
         final RadioGroup radioGroup=rootView.findViewById(R.id.radio_group);
         final TextView textView=rootView.findViewById(R.id.fragment_header);
 
+        if(getArguments().containsKey(CHOICE)){
+            mRadioButtonChoice =getArguments().getInt(CHOICE);
+            if(mRadioButtonChoice!=2){
+                radioGroup.check(radioGroup.getChildAt(mRadioButtonChoice).getId());
+            }
+        }
         radioGroup.setOnCheckedChangeListener(
                 new RadioGroup.OnCheckedChangeListener() {
                     @Override
@@ -63,13 +69,16 @@ public class SimpleFragment extends Fragment {
                         switch (index){
                             case 0:
                                 textView.setText(R.string.yes_message);
+                                mRadioButtonChoice=0;
                                 mListener.onRadioButtonChoice(0);
                                 break;
                             case 1:
                                 textView.setText(R.string.no_message);
+                                mRadioButtonChoice=1;
                                 mListener.onRadioButtonChoice(1);
                                 break;
                             default:
+                                mRadioButtonChoice=2;
                                 mListener.onRadioButtonChoice(2);
                                 break;
                         }
