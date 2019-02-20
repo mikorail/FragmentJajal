@@ -33,10 +33,10 @@ public class MainActivity extends AppCompatActivity
         }
     }
     public void displayFragment(){
-        SimpleFragment simpleFragment=new SimpleFragment();
+        SimpleFragment simpleFragment=SimpleFragment.newInstance(mRadioButtonChoice);
         FragmentManager fragmentManager=getSupportFragmentManager();
         FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fragment_container,simpleFragment).commit();
+        fragmentTransaction.add(R.id.fragment_container,simpleFragment).addToBackStack(null).commit();
 
         mButton.setText(R.string.close);
         isFragmentDisplayed=true;
